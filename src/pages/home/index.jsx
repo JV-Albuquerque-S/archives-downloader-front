@@ -29,36 +29,10 @@ export default function DownloadPage() {
         });
     }, []);
 
-    /*function showFiles() {
-        if(files === null){
-            return <ThreeDots width={51} height={13} color="#D1D1D4" />
-        }
-        else if(files === "") {
-            return <>No files uploaded yet.</>
-        }
-        else if(files === "error") {
-            return <>An error occured while trying to fetch the files, please refresh the page.</>
-        }
-        else{
-            return (
-                files.map((file) => {
-                    if(file!=null){
-                        return (
-                            <Page>
-
-                            </Page>
-                        )
-                    }
-                })
-            );
-        }
-    }*/
-
-    //const callShowFiles = showFiles();
-
     function nameFilter(e){
         e.preventDefault();
         setDisable(true)
+        console.log(checkedFiles)
         
         const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/${name}`);
         promise.then(res => {
@@ -96,7 +70,7 @@ export default function DownloadPage() {
         promise.then(res => {
             setFiles(res.data);
             setDisable(false);
-            console.log(res.data)
+            console.log(res.data);
         });
         promise.catch((e) => {
             console.log(e.response.data);
@@ -104,7 +78,21 @@ export default function DownloadPage() {
         })
     }
 
-    function checkedBox(name){
+    function downloadFiles(checkedFiles){
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/download/1`, {
+            params: {
+                info: checkedFiles
+            }
+        });
+        promise.then(res => {
+            console.log(res.data);
+        });
+        promise.catch((e) => {
+            console.log(e.response.data);
+        })
+    }
+
+    function checkedBox(id, name){
         let count = 0;
         for(let i=0; i<checkedFiles.length; i++){
             if(checkedFiles[i]===name){
@@ -114,7 +102,8 @@ export default function DownloadPage() {
                 })
             }
         }
-        count===0? setCheckedFiles(checkedFiles => [...checkedFiles, name]) && console.log(checkedFiles) : console.log(checkedFiles)
+
+        count===0? setCheckedFiles(checkedFiles => [...checkedFiles, {'id': id, 'name': name}]) && console.log(checkedFiles) : console.log(checkedFiles)
     }
 
     return(
@@ -182,8 +171,11 @@ export default function DownloadPage() {
                             <article>
                                 <form>
                                     <input
-                                        type="checkbox"
-                                        onChange={() => checkedBox(file.name)}
+                                        type="button"
+                                        onClick={() => {
+                                            checkedBox(file.id, file.name)
+                                            console.log(checkedFiles)
+                                        }}
                                     />
                                 </form>
                                 <p className="name">{file.name}</p>
@@ -195,11 +187,16 @@ export default function DownloadPage() {
                     })}
                 </Container>
                 <SideBox>
+                    <div>
                     {checkedFiles.map(checkedFile => {
                         return(
-                            <p>{checkedFile}</p>
+                            <p>{checkedFile.name}</p>
                         )
                     })}
+                    </div>
+                    {checkedFiles.length == 0 ? 
+                        (<button className="disabled-button" disabled={true}>Download</button>):
+                        (<button className="enabled-button" onClick={downloadFiles(checkedFiles)}>Download</button>)}
                 </SideBox>
         </Page>
     )

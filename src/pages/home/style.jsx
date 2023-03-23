@@ -82,6 +82,17 @@ export const Container = styled.article`
     width: 40vw;
     background-color: rgb(188, 203, 212);
     border-radius: 30px;
+
+    input {
+        background-color: #4fac4f;
+        border-radius: 300px;
+        margin-right: 5px;
+        cursor: pointer
+    }
+
+    input:hover {
+        background-color: blue;
+    }
     
     article {
         padding-top: 20px;
@@ -123,13 +134,70 @@ export const Container = styled.article`
 `
 
 export const SideBox = styled.article`
-    height: 300px;
-    width: 300px;
-    position: fixed;
-    z-index: 1;
-    top: 270px;
-    right: 200px;
-    background-color: rgb(188, 203, 212);
-    border-radius: 30px;
-    padding-top: 20px;
+
+    div {
+        height: 300px;
+        width: 300px;
+        position: fixed;
+        z-index: 1;
+        top: 270px;
+        right: 200px;
+        background-color: rgb(188, 203, 212);
+        border-radius: 30px;
+        padding-top: 20px;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+    }
+
+    p {
+        margin-bottom: 9px;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        border: solid;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-color: rgb(208, 230, 245);
+        padding-bottom: 8px;
+    }
+
+    button {
+        position: fixed;
+        z-index: 1;
+        top: 600px;
+        right: 250px;
+        font-family: 'Kanit', sans-serif;
+        font-size: 20px;
+        height: 35px;
+        width: 170px;
+        border-radius: 6px;
+        border: none;
+        margin-left: 15px;
+    }
+
+    .enabled-button {
+        position: fixed;
+        z-index: 1;
+        top: 600px;
+        right: 250px;
+        background-color: rgb(114, 180, 224);
+        color: #000000;
+        font-family: 'Kanit', sans-serif;
+        font-size: 20px;
+        height: 35px;
+        width: 170px;
+        border-radius: 6px;
+        border: none;
+        margin-left: 15px;
+        cursor: pointer;
+    }
+
+    .enabled-button:hover {
+        background-color: #7c7cdb;
+    }
 `
