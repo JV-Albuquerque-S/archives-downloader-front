@@ -9,12 +9,14 @@ export const Page = styled.div`
 
     header {
         background-color: #e4e4e4;
-        height: 150px;
+        height: 120px;
         width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 50px;
+        padding-top: 40px;
+        padding-bottom: 30px;
     }
 
     h1 {
@@ -107,14 +109,27 @@ export const Container = styled.article`
     }
 
     .name {
-        width: 120px;
+        width: 180px;
     }
 
     .ext {
-        width: 50px;
+        width: 100px;
+        padding-left: 40px;
     }
 
     .stored {
-        width: 160px;
+        width: 200px;
     }
+`
+
+export const SideBox = styled.article`
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 270px;
+    right: 200px;
+    background-color: rgb(188, 203, 212);
+    border-radius: 30px;
+    padding-top: 20px;
 `

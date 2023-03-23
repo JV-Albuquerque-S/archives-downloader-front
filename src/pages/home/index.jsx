@@ -12,6 +12,7 @@ export default function DownloadPage() {
     const [name, setName] = useState("");
     const [extension, setExtension] = useState("");
     const [files, setFiles] = useState([]);
+    const [checkedFiles, setCheckedFiles] = useState([]);
     const [disable, setDisable] = useState(false);
 
     useEffect(() => {
@@ -103,6 +104,19 @@ export default function DownloadPage() {
         })
     }
 
+    function checkedBox(name){
+        let count = 0;
+        for(let i=0; i<checkedFiles.length; i++){
+            if(checkedFiles[i]===name){
+                count++
+                setCheckedFiles(oldValues => {
+                    return oldValues.filter(checkedFile => checkedFile !== name)
+                })
+            }
+        }
+        count===0? setCheckedFiles(checkedFiles => [...checkedFiles, name]) && console.log(checkedFiles) : console.log(checkedFiles)
+    }
+
     return(
         <Page>
             <header>
@@ -167,16 +181,26 @@ export default function DownloadPage() {
                         return(
                             <article>
                                 <form>
-                                    <input type="checkbox" />
+                                    <input
+                                        type="checkbox"
+                                        onChange={() => checkedBox(file.name)}
+                                    />
                                 </form>
                                 <p className="name">{file.name}</p>
                                 <p className="ext">{file.ext}</p>
                                 <p className="stored">{file.stored_in}</p>
-                                <p className="created">{file.created_at}</p>
+                                <p className="created">{file.created_at.substring(0, 10)}</p>
                             </article>
                         )
                     })}
                 </Container>
+                <SideBox>
+                    {checkedFiles.map(checkedFile => {
+                        return(
+                            <p>{checkedFile}</p>
+                        )
+                    })}
+                </SideBox>
         </Page>
     )
 }
