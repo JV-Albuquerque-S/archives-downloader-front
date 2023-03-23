@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
 import axios from "axios";
@@ -8,7 +7,6 @@ import {Page, Form, SideBox, Container} from "./style";
 
 export default function DownloadPage() {
 
-    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [extension, setExtension] = useState("");
     const [files, setFiles] = useState([]);
@@ -79,6 +77,7 @@ export default function DownloadPage() {
     }
 
     function downloadFiles(checkedFiles){
+        console.log('chamou download')
         const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/download/1`, {
             params: {
                 info: checkedFiles
@@ -93,12 +92,13 @@ export default function DownloadPage() {
     }
 
     function checkedBox(id, name){
+        console.log('chamou checked')
         let count = 0;
         for(let i=0; i<checkedFiles.length; i++){
-            if(checkedFiles[i]===name){
+            if(checkedFiles[i].name===name){
                 count++
                 setCheckedFiles(oldValues => {
-                    return oldValues.filter(checkedFile => checkedFile !== name)
+                    return oldValues.filter(checkedFile => checkedFile.name !== name)
                 })
             }
         }
@@ -194,9 +194,9 @@ export default function DownloadPage() {
                         )
                     })}
                     </div>
-                    {checkedFiles.length == 0 ? 
+                    {checkedFiles.length === 0 ? 
                         (<button className="disabled-button" disabled={true}>Download</button>):
-                        (<button className="enabled-button" onClick={downloadFiles(checkedFiles)}>Download</button>)}
+                        (<button className="enabled-button" onClick={() => downloadFiles(checkedFiles)}>Download</button>)}
                 </SideBox>
         </Page>
     )

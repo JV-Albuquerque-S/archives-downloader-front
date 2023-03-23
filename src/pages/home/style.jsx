@@ -6,7 +6,6 @@ export const Page = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     header {
         background-color: #e4e4e4;
         height: 120px;
@@ -18,14 +17,12 @@ export const Page = styled.div`
         padding-top: 40px;
         padding-bottom: 30px;
     }
-
     h1 {
         font-size: 40px;
         font-family: 'Kanit', sans-serif;
         padding-bottom: 10px;
         color: #383838;
     }
-
     section {
         display: flex;
         width: 40vw;
@@ -40,7 +37,6 @@ export const Form = styled.form`
     align-items: center;
     font-family: 'Kanit', sans-serif;
     margin-right: 80px;
-
     input {
         background-color: rgb(208, 230, 245);
         height: 25px;
@@ -51,12 +47,10 @@ export const Form = styled.form`
         font-size: 20px;
         font-family: 'Kanit', sans-serif;
     }
-
     input:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 }
-
     .disabled-button{
         background-color: #756e4d;
         color: #3f3c3c;
@@ -64,7 +58,6 @@ export const Form = styled.form`
         align-items: center;
         justify-content: center;
     }
-
     button{
         background-color: rgb(177, 193, 204);
         color: #000000;
@@ -82,14 +75,12 @@ export const Container = styled.article`
     width: 40vw;
     background-color: rgb(188, 203, 212);
     border-radius: 30px;
-
     input {
         background-color: #4fac4f;
         border-radius: 300px;
         margin-right: 5px;
         cursor: pointer
     }
-
     input:hover {
         background-color: blue;
     }
@@ -106,7 +97,6 @@ export const Container = styled.article`
         border-width: 2px;
         display: flex;
     }
-
     p {
         margin-right: 35px;
         height: 19px;
@@ -118,23 +108,19 @@ export const Container = styled.article`
     p::-webkit-scrollbar {
         display: none;
     }
-
     .name {
         width: 180px;
     }
-
     .ext {
         width: 100px;
         padding-left: 40px;
     }
-
     .stored {
         width: 200px;
     }
 `
 
 export const SideBox = styled.article`
-
     div {
         height: 300px;
         width: 300px;
@@ -151,7 +137,6 @@ export const SideBox = styled.article`
         align-items: center;
         overflow-y: scroll;
     }
-
     p {
         margin-bottom: 9px;
         width: 100%;
@@ -165,7 +150,6 @@ export const SideBox = styled.article`
         border-color: rgb(208, 230, 245);
         padding-bottom: 8px;
     }
-
     button {
         position: fixed;
         z-index: 1;
@@ -179,7 +163,6 @@ export const SideBox = styled.article`
         border: none;
         margin-left: 15px;
     }
-
     .enabled-button {
         position: fixed;
         z-index: 1;
@@ -196,7 +179,6 @@ export const SideBox = styled.article`
         margin-left: 15px;
         cursor: pointer;
     }
-
     .enabled-button:hover {
         background-color: #7c7cdb;
     }
